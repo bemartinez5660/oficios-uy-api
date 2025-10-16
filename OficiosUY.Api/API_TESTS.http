@@ -1,0 +1,81 @@
+### Oficios UY API Tests
+### Base URL
+@baseUrl = https://localhost:5001/api/v1
+
+### 1. Register a new user
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Juan Pérez",
+  "email": "juan@example.com",
+  "password": "password123",
+  "role": "user"
+}
+
+### 2. Register a provider
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Carlos Electricista",
+  "email": "carlos@example.com",
+  "password": "password123",
+  "role": "provider"
+}
+
+### 3. Login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "juan@example.com",
+  "password": "password123"
+}
+
+### 4. Get current user (requires authentication)
+GET {{baseUrl}}/auth/me
+
+### 5. Get all services
+GET {{baseUrl}}/services
+
+### 6. Create a service (requires provider role)
+POST {{baseUrl}}/services
+Content-Type: application/json
+
+{
+  "title": "Instalación Eléctrica Residencial",
+  "description": "Instalación completa de sistemas eléctricos para hogares",
+  "category": "Electricidad",
+  "priceRange": "$2000 - $5000"
+}
+
+### 7. Create a booking (requires authentication)
+POST {{baseUrl}}/bookings
+Content-Type: application/json
+
+{
+  "serviceId": 1,
+  "dateRequested": "2024-02-15T10:00:00Z"
+}
+
+### 8. Get user bookings (requires authentication)
+GET {{baseUrl}}/bookings/user/1
+
+### 9. Get user by ID (requires authentication)
+GET {{baseUrl}}/users/1
+
+### 10. Update user (requires authentication)
+PUT {{baseUrl}}/users/1
+Content-Type: application/json
+
+{
+  "name": "Juan Pérez Updated",
+  "email": "juan.updated@example.com"
+}
+
+### 11. Refresh token
+POST {{baseUrl}}/auth/refresh
+
+### 12. Logout
+POST {{baseUrl}}/auth/logout

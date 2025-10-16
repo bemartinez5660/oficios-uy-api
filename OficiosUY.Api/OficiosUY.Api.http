@@ -1,0 +1,6 @@
+@OficiosUY.Api_HostAddress = http://localhost:5212
+
+GET {{OficiosUY.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
