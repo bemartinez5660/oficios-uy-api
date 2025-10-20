@@ -1,10 +1,10 @@
 # Etapa de build
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
-COPY OficiosUY.Api.csproj ./
-RUN dotnet restore OficiosUY.Api.csproj
-COPY . .
-RUN dotnet publish OficiosUY.Api.csproj -c Release -o /app/publish
+COPY OficiosUY.Api/*.csproj ./OficiosUY.Api/
+RUN dotnet restore OficiosUY.Api/OficiosUY.Api.csproj
+COPY OficiosUY.Api/. ./OficiosUY.Api/
+RUN dotnet publish OficiosUY.Api/OficiosUY.Api.csproj -c Release -o /app/publish
 
 # Etapa de runtime
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
